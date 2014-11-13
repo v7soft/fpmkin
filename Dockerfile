@@ -5,5 +5,6 @@ sed -i "s/;date.timezone =.*/date.timezone = Novosibirsk/Asia/; s/;cgi.fix_pathi
 mkdir /etc/service/phpfpm && \
 echo "#!/usr/bin/env bash" > /etc/service/phpfpm/run && \
 echo "php5-fpm -c /etc/php5/fpm" >> /etc/service/phpfpm/run && \
+ln -s ../../mods-available/interbase.ini /etc/php5/fpm/conf.d/30-interbase.ini && \
 chmod +x /etc/service/phpfpm/run && \
 apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
