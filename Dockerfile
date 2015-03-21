@@ -9,8 +9,7 @@ RUN apt-get update && apt-get -y dist-upgrade \
         && rm /etc/service/sshd/down && dpkg-reconfigure openssh-server \
         && apt-get clean &&  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
         
-RUN sed -i "s/;date.timezone =.*/date.timezone = Asia\/Novosibirsk/; s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/; s/short_open_tag/;short_open_tag/; s/memory_limit\.*$/memory_limit = 512M/" /etc/php5/fpm/php.ini
-  \
+RUN sed -i "s/;date.timezone =.*/date.timezone = Asia\/Novosibirsk/; s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/; s/short_open_tag/;short_open_tag/; s/memory_limit\.*$/memory_limit = 512M/" /etc/php5/fpm/php.ini \
         && sed -i "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php5/fpm/php-fpm.conf \
         && mkdir /etc/service/phpfpm \
         && echo "#!/usr/bin/env bash" > /etc/service/phpfpm/run \
